@@ -1,0 +1,191 @@
+\documentclass[
+	a4paper, % Papierformat
+	BCOR=20mm,
+	ngerman, % für Umlaute, Silbentrennung etc.
+	%oneside, % einseitiges Dokument
+	titlepage, % es wird eine Titelseite verwendet
+	parskip=half, % Abstand zwischen Absätzen (halbe Zeile)
+	final % Status des Dokuments (final/draft)
+]{scrreprt}
+\usepackage{scrhack}
+
+%\overfullrule=5pt %visualisiere volle/leere Boxen
+
+\usepackage{lmodern} % bessere Fonts
+\usepackage[T1]{fontenc} %Vektorschriften
+\usepackage[utf8]{inputenc} %üäöß usw richtg erkennen...
+\usepackage[ngerman]{babel} %english,french....
+\usepackage[babel]{microtype} %verbessertes schriftbild
+\usepackage{relsize} % Schriftgröße relativ festlegen
+\usepackage{subfig,wrapfig}
+% zum Einbinden von Programmcode
+
+\usepackage{kpfonts} %http://sunsite.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/fonts/kpfonts/doc/kpfonts.pdf
+%\usepackage{mathptmx} % für Schrift mit Serifen
+%\usepackage[scaled=.90]{helvet} % für Schrift ohne Serifen
+%\usepackage{courier} % für Schrift mit konstanter Breite
+
+
+\usepackage{calc}% http://ctan.org/pkg/calc
+\usepackage{enumitem} %erweiterte Listen
+
+\usepackage{fourier-orns} %schnörkel
+\usepackage{wasysym} %erweiterte Symbole
+
+\usepackage{lastpage}
+
+% -----------------------------------------------
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usepackage{graphicx} % um Bilder mit \graphics einbinden zu können
+\usepackage[dvips]{epsfig} % um Bilder zu skalieren
+
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{darkmagenta}{rgb}{.5,0,.6}
+\usepackage[  %zum einbinden von urls
+    bookmarks,
+    bookmarksopen=true,
+    colorlinks=true,% diese Farbdefinitionen zeichnen Links im PDF farblich aus
+    linkcolor=darkblue, %red, % einfache interne Verknüpfungen
+    anchorcolor=black,% Ankertext
+    citecolor=darkmagenta, % Verweise auf Literaturverzeichniseinträge im Text
+    filecolor=magenta, % Verknüpfungen, die lokale Dateien öffnen
+    menucolor=red, % Acrobat-Menüpunkte
+    urlcolor=blue, 
+% diese Farbdefinitionen sollten für den Druck verwendet werden (alles schwarz)
+    %linkcolor=black, % einfache interne Verknüpfungen
+    %anchorcolor=black, % Ankertext
+    %citecolor=black, % Verweise auf Literaturverzeichniseinträge im Text
+    %filecolor=black, % Verknüpfungen, die lokale Dateien öffnen
+    %menucolor=black, % Acrobat-Menüpunkte
+    %urlcolor=black, 
+    backref,
+    plainpages=false, % zur korrekten Erstellung der Bookmarks
+    pdfpagelabels, % zur korrekten Erstellung der Bookmarks
+    hypertexnames=false, % zur korrekten Erstellung der Bookmarks
+    linktocpage % Seitenzahlen anstatt Text im Inhaltsverzeichnis verlinken
+]{hyperref}
+
+
+%gute Tabellen
+\usepackage{booktabs,colortbl,tabularx}
+\usepackage{multirow}
+
+% Einfache Definition der Zeilenabstände und Seitenränder etc. -----------------
+\usepackage{setspace}
+\usepackage{geometry}
+
+
+\geometry{paper=a4paper,
+left=22mm,
+right=18mm,
+top=30mm,
+bottom=20mm}
+
+%Tabelle feste spaltenbreite mit Ausrichtung rechts, center oder links
+\usepackage{tabularx}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % linksbündig mit Breitenangabe
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % zentriert mit Breitenangabe
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % rechtsbündig mit Breitenangabe
+
+
+% Kopf- und Fußzeilen ----------------------------------------------------------
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+% Kopf- und Fußzeile auch auf Kapitelanfangsseiten
+% loescht voreingestellte Stile
+\clearscrheadings
+\clearscrplain
+
+\renewcommand*{\chapterpagestyle}{scrheadings} 
+% Schriftform der Kopfzeile
+\renewcommand{\headfont}{\normalfont}
+\setlength{\headheight}{0mm} % Höhe der Kopfzeile
+
+% Schriftform der Fußzeile
+\newcommand*{\totalpagemark}{\thepage/\pageref{LastPage}} 
+\ofoot{\totalpagemark} 
+\setlength{\footskip}{12mm}
+
+%Überschriften Anpassen
+\renewcommand*{\othersectionlevelsformat}[3]{%
+  \makebox[1.5cm][l]{#3\autodot}%
+}%
+\renewcommand*{\chapterformat}{%
+  \makebox[1.5cm][l]{\thechapter\autodot}%
+}
+\renewcommand{\chapterheadstartvskip}{\vspace*{-4\topskip}}
+\renewcommand{\chapterheadendvskip}{\vspace*{0.8\topskip}}
+
+\setlength{\fboxsep}{1.7mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Wir definieren einige Dinge nur einmal und verwenden sie dann mehrfach.
+\newcommand*\Title{Mein Kochbuch}
+\newcommand*\Subject{}
+\newcommand*\Author{Alexander Schäfer}
+\newcommand*\Keywords{}
+
+% Wir wollen einen Index:
+\usepackage{makeidx}\makeindex
+ 
+% Wir wollen aktive Links und einige Dokumentinformationen:
+\usepackage{hyperref}
+\hypersetup{%
+  pdftitle={\Title},
+  pdfsubject={\Subject},
+  pdfauthor={\Author},
+  pdfkeywords={\Keywords}
+}
+
+\title{\Title\\}
+\author{\Large \Author}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle  % erzeugt die Titelseite
+\tableofcontents % erzeugt das Inhaltsverzeichnis
+%\listoffigures % erzeugt das Abbildungsverzeichnis
+%\listoftables % erzeugt das Abbildungsverzeichnis
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Fleischgerichte}
+\input{./Rezepte/Wildschweingulasch_Waldpilze.tex}
+\input{./Rezepte/Lasagne_Bolognese.tex}
+\input{./Rezepte/bolognese.tex}
+\input{./Rezepte/Gefuellte_Paprika.tex}
+\input{./Rezepte/Roemische_Zucchini.tex}
+\input{./Rezepte/Erbseneintopf.tex}
+\input{./Rezepte/schaschlik_wie_im_kaukasus.tex}
+\input{./Rezepte/Fladenbrotburger.tex}
+\input{./Rezepte/das_schnellste_huhn.tex}
+\input{./Rezepte/Afrikanische_Erdnusssauce.tex}
+\input{./Rezepte/toast_hawaii.tex}
+\input{./Rezepte/Hähnchenbrustfilet_gewickelt_Bohnen.tex}
+\input{./Rezepte/gefuellte_Zucchini.tex}
+\input{./Rezepte/Kabeljaufilet_auf_gruenem_spargel.tex}
+\input{./Rezepte/Rinderrouladen_klassisch}
+
+
+
+\chapter{Rezepte ohne Fleisch}
+\input{./Rezepte/Suesskartoffelsticks_mit_Honig_Sesam_Dip.tex}
+\input{./Rezepte/Brennessel-Kartoffel-Suppe.tex}
+\input{./Rezepte/Blumenkohl_gebraten.tex}
+\input{./Rezepte/Erbsensuppe.tex}
+\input{./Rezepte/Brokkoli_Salat.tex}
+\input{./Rezepte/Rote-Bete-Salat-Erdnussbutter.tex}
+%input{./Rezepte/Karotten_Curry_Sugo.tex}
+\input{./Rezepte/pikante_reistorte.tex}
+\input{./Rezepte/bunte_frittata.tex}
+\input{./Rezepte/Linsenbolognese_mit_Pasta.tex}
+
+\chapter{Grillrezepte}
+\input{./Rezepte/Baguette.tex}
+\input{./Rezepte/Mais_Tortiallas.tex}
+
+\chapter{Hinweise}
+\input{./Rezepte/ideal_geroesteter_Sesam.tex}
+
+
+%\include{./Rezepte/Salat_Vinaigrette}
+\end{document}
