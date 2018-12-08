@@ -2,7 +2,6 @@
 	a4paper, % Papierformat
 	BCOR=20mm,
 	ngerman, % für Umlaute, Silbentrennung etc.
-	%oneside, % einseitiges Dokument
 	titlepage, % es wird eine Titelseite verwendet
 	parskip=half, % Abstand zwischen Absätzen (halbe Zeile)
 	final % Status des Dokuments (final/draft)
@@ -10,7 +9,7 @@
 \usepackage{scrhack}
 
 %\overfullrule=5pt %visualisiere volle/leere Boxen
-%test 
+
 \usepackage{lmodern} % bessere Fonts
 \usepackage[T1]{fontenc} %Vektorschriften
 \usepackage[utf8]{inputenc} %üäöß usw richtg erkennen...
@@ -52,14 +51,14 @@
     citecolor=darkmagenta, % Verweise auf Literaturverzeichniseinträge im Text
     filecolor=magenta, % Verknüpfungen, die lokale Dateien öffnen
     menucolor=red, % Acrobat-Menüpunkte
-    urlcolor=blue, 
+    urlcolor=blue,
 % diese Farbdefinitionen sollten für den Druck verwendet werden (alles schwarz)
     %linkcolor=black, % einfache interne Verknüpfungen
     %anchorcolor=black, % Ankertext
     %citecolor=black, % Verweise auf Literaturverzeichniseinträge im Text
     %filecolor=black, % Verknüpfungen, die lokale Dateien öffnen
     %menucolor=black, % Acrobat-Menüpunkte
-    %urlcolor=black, 
+    %urlcolor=black,
     backref,
     plainpages=false, % zur korrekten Erstellung der Bookmarks
     pdfpagelabels, % zur korrekten Erstellung der Bookmarks
@@ -91,21 +90,21 @@ bottom=20mm}
 
 
 % Kopf- und Fußzeilen ----------------------------------------------------------
-\usepackage{scrpage2}
+\usepackage{scrlayer-scrpage}
 \pagestyle{scrheadings}
 % Kopf- und Fußzeile auch auf Kapitelanfangsseiten
 % loescht voreingestellte Stile
 \clearscrheadings
 \clearscrplain
 
-\renewcommand*{\chapterpagestyle}{scrheadings} 
+\renewcommand*{\chapterpagestyle}{scrheadings}
 % Schriftform der Kopfzeile
 \renewcommand{\headfont}{\normalfont}
 \setlength{\headheight}{0mm} % Höhe der Kopfzeile
 
 % Schriftform der Fußzeile
-\newcommand*{\totalpagemark}{\thepage/\pageref{LastPage}} 
-\ofoot{\totalpagemark} 
+\newcommand*{\totalpagemark}{\thepage/\pageref{LastPage}}
+\ofoot{\totalpagemark}
 \setlength{\footskip}{12mm}
 
 %Überschriften Anpassen
@@ -129,7 +128,7 @@ bottom=20mm}
 
 % Wir wollen einen Index:
 \usepackage{makeidx}\makeindex
- 
+
 % Wir wollen aktive Links und einige Dokumentinformationen:
 \usepackage{hyperref}
 \hypersetup{%
@@ -148,7 +147,7 @@ bottom=20mm}
 %\listoffigures % erzeugt das Abbildungsverzeichnis
 %\listoftables % erzeugt das Abbildungsverzeichnis
 %%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Fleischgerichte}
+%\chapter{Fleischgerichte}
 \input{./Rezepte/Wildschweingulasch_Waldpilze.tex}
 \input{./Rezepte/Lasagne_Bolognese.tex}
 \input{./Rezepte/bolognese.tex}
@@ -169,7 +168,9 @@ bottom=20mm}
 
 \chapter{Rezepte ohne Fleisch}
 \input{./Rezepte/Suesskartoffelsticks_mit_Honig_Sesam_Dip.tex}
+%\input{./Rezepte/Zucchini_Wedges_mit_Pesto_Dip.tex}
 \input{./Rezepte/Brennessel-Kartoffel-Suppe.tex}
+\input{./Rezepte/Linsen-und-Tomatensuppe.tex}
 \input{./Rezepte/Blumenkohl_gebraten.tex}
 \input{./Rezepte/Erbsensuppe.tex}
 \input{./Rezepte/Linsenbolognese_mit_Pasta.tex}
