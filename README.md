@@ -1,5 +1,5 @@
 # Kochbuch
-Kochbuch erstellt mit Latex. Enthällt follgende Rezepte:
+Kochbuch erstellt mit Latex. Enthält folgende Rezepte:
 
   - Wildschweingulasch Waldpilze
   - Lasagne Bolognese
